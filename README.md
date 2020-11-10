@@ -4,6 +4,11 @@
 
 https://docs.badger.store/fivem-misc.-scripts/badger_jailing
 
+## For all your hosting needs:
+![Iceline Hosting](https://i.gyazo.com/24c65c27acc53ce0656cda7e7ed29230.gif)
+
+### Use code `BADGER15` at https://iceline-hosting.com/billing/aff.php?aff=284 for `15% off` your first month of any service (excluding dedicated servers)
+
 ## What is it?
 
 Badger_Jailing is a pretty basic jailing script. I wrote it for my past FiveM server because the current jail system was wonky and would let people out of jail if they changed their ped model. This jail script functions a little bit differently than most however. Instead of having a single place to spend jail time, there are cells you define in the config. A player can only be in a cell if it is open. If all the cells are taken, then the player who was jailed will be on a queue waiting to be jailed when a cell is open. In general, I suggest 10+ cells defined in the config as well as a nice jail interior like the one displayed in `Images`. Another nice thing is that jail times carry over even when the server is restarted or a player leaves. Players therefore cannot afford their jail time. You do the crime, you do the time...
