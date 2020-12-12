@@ -163,6 +163,11 @@ AddEventHandler("playerDropped", function()
 	SaveFile(cfg);
 	JailTracker[src] = nil;
 	SaveFile(cfg);
+	for key, license in pairs(CellTracker) do 
+		if license == ids.license then 
+			CellTracker[key] = nil;
+		end
+	end
 end)
 
 CellTracker = {}
