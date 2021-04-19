@@ -16,7 +16,7 @@ https://i.gyazo.com/6ac0d98d3f6abcc51253cd35c9c28a8f.gif
 
 `/jail <id> <time>` - Requires `Badger_Jailing.Jail` permission. 
 
-`/unjail <id>` - Requires `Badger_Jailing.Unjail` permission.
+`/free <id>` - Requires `Badger_Jailing.Unjail` permission.
 
 ## Configuration
 ```
