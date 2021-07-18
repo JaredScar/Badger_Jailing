@@ -10,9 +10,9 @@ AddEventHandler('Badger_Jailing:JailPlayer', function(coords, time, cell)
     jailCoords = coords
     jailCell = cell
 
-	TriggerEvent('chatMessage', Config.Prefix .. "You have been jailed for ^1" .. jailTime .. "^3 seconds.")
+    TriggerEvent('chatMessage', Config.Prefix .. "You have been jailed for ^1" .. jailTime .. "^3 seconds.")
 
-	-- NOTE: Teleporting gets handled by the function at the bottom of the file
+    -- NOTE: Teleporting gets handled by the function at the bottom of the file
 end)
 
 RegisterNetEvent('Badger_Jailing:UnjailPlayer')
@@ -50,37 +50,38 @@ Citizen.CreateThread(function()
                 if dist > Config.MaxDiffDistance then
                     SetEntityCoords(playerPed, jailCoords.x, jailCoords.y, jailCoords.z)
                 end
+
+                -- I know, messy but it works
+                if jailTime == 1 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^11^3 second left in jail...")
+                elseif jailTime < 6 then
+                    TriggerEvent('chatMessage',
+                        Config.Prefix .. "You have ^1" .. jailTime .. "^3 seconds left in jail...")
+                elseif jailTime == 15 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^115^3 seconds left in jail...")
+                elseif jailTime == 60 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^11^3 minute left in jail...")
+                elseif jailTime == 120 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^12^3 minutes left in jail...")
+                elseif jailTime == 180 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^13^3 minutes left in jail...")
+                elseif jailTime == 300 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^15^3 minutes left in jail...")
+                elseif jailTime == 600 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^110^3 minutes left in jail...")
+                elseif jailTime == 900 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^115^3 minutes left in jail...")
+                elseif jailTime == 1800 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^130^3 minutes left in jail...")
+                elseif jailTime == 3600 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^11^3 hour left in jail...")
+                elseif jailTime == 7200 then
+                    TriggerEvent('chatMessage', Config.Prefix .. "You have ^12^3 hours left in jail...")
+                end
             else
                 TriggerEvent('Badger_Jailing:UnjailPlayer')
                 jailTime = nil
-			end
-
-			-- I know, messy but it works
-            if jailTime == 1 then
-                TriggerEvent('chatMessage', Config.Prefix .. "You have ^11^3 second left in jail...")
-			elseif jailTime < 6 then
-                TriggerEvent('chatMessage', Config.Prefix .. "You have ^1" .. jailTime .. "^3 seconds left in jail...")
-            elseif jailTime == 15 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^115^3 seconds left in jail...")
-			elseif jailTime == 60 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^11^3 minute left in jail...")
-			elseif jailTime == 120 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^12^3 minutes left in jail...")
-			elseif jailTime == 180 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^13^3 minutes left in jail...")
-			elseif jailTime == 300 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^15^3 minutes left in jail...")
-			elseif jailTime == 600 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^110^3 minutes left in jail...")
-			elseif jailTime == 900 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^115^3 minutes left in jail...")
-			elseif jailTime == 1800 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^130^3 minutes left in jail...")
-			elseif jailTime == 3600 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^11^3 hour left in jail...")
-			elseif jailTime == 7200 then
-				TriggerEvent('chatMessage', Config.Prefix .. "You have ^12^3 hours left in jail...")
-			end
+            end
         end
     end
 end)
