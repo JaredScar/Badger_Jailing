@@ -1,4 +1,10 @@
 Config = {
+    UseESX = true,
+    -- The jobs that should be allowed to jail people (ESX only)
+    AllowedJobs = {
+        'police'
+    },
+    MaxDiffDistance = 15, -- The distance players are allowed to move from their cellcoords
     Prefix = '^1[^5Badger_Jailing^1] ^3',
     PrisonExit = { x = 1840.57, y = 2586.37, z = 45.95 },
     Cells = {
@@ -13,6 +19,6 @@ Config = {
         ['Cell 9'] = { x = 1789.73, y = 2590.07, z = 49.55 },
         ['Cell 10'] = { x = 1789.93, y = 2594.00, z = 49.55 },
         ['Cell 11'] = { x = 1789.92, y = 2597.65, z = 49.55 },
-        ['Cell 12'] = { x = 1785.60, y = 2602.10, z = 49.55 },
-    },
+        ['Cell 12'] = { x = 1785.60, y = 2602.10, z = 49.55 }
+    }
 }
