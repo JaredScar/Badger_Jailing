@@ -31,9 +31,11 @@ Citizen.CreateThread(function()
 			if jailTime > 0 then 
 				jailTime = jailTime - 1;
 			end
-			if mod(jailTime, 5) == 0 and jailTime ~= 0 then 
+			if mod(jailTime, Config.Teleport_And_Notify_Every) == 0 and jailTime ~= 0 then 
 				TriggerEvent('chatMessage', Config.Prefix .. "You have ^1" .. jailTime .. "^3 seconds left in jail...");
-				SetEntityCoords(ped, cords.x, cords.y, cords.z, 1, 0, 0, 1)
+				if (Config.Teleport_Enabled) then 
+					SetEntityCoords(ped, cords.x, cords.y, cords.z, 1, 0, 0, 1)
+				end
 			end
 			if jailTime == 0 then 
 				TriggerEvent('Badger_Jailing:UnjailPlayer');
