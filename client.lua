@@ -1,13 +1,13 @@
 jailTime = nil;
 cords = nil;
 jailCell = nil;
+teleported = false;
 RegisterNetEvent('Badger_Jailing:JailPlayer')
 AddEventHandler('Badger_Jailing:JailPlayer', function(jailCoords, time, cell)
 	local ped = GetPlayerPed(-1);
 	jailTime = time;
 	cords = jailCoords;
 	jailCell = cell;
-	SetEntityCoords(ped, cords.x, cords.y, cords.z, 1, 0, 0, 1)
 end)
 
 RegisterNetEvent('Badger_Jailing:UnjailPlayer')
@@ -20,6 +20,7 @@ AddEventHandler('Badger_Jailing:UnjailPlayer', function()
 	TriggerServerEvent('Badger_Jailing:FreeCell', jailCell);
 	jailCell = nil;
 	cords = nil;
+	teleported = false;
 end)
 
 Citizen.CreateThread(function()
@@ -27,6 +28,10 @@ Citizen.CreateThread(function()
 	while true do 
 		Citizen.Wait(1000);
 		local ped = GetPlayerPed(-1)
+		if (not teleported) then 
+			SetEntityCoords(ped, cords.x, cords.y, cords.z, 1, 0, 0, 1);
+			teleported = true;
+		end
 		if jailTime ~= nil then 
 			if jailTime > 0 then 
 				jailTime = jailTime - 1;
