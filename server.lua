@@ -51,26 +51,31 @@ RegisterCommand('jail', function(src, args, raw)
 			-- Valid player 
 			if tonumber(args[2]) ~= nil then 
 				-- Valid number supplied 
-				TriggerClientEvent('chatMessage', -1, Config.Prefix .. "Player ^5" .. GetPlayerName(args[1]) .. " ^3has been jailed for ^1" ..
-					args[2] .. " ^3seconds...");
-				Citizen.CreateThread(function()
-					local cfg = LoadFile();
-					local ids = ExtractIdentifiers(args[1]);
-					cfg[ids.license] = {Cell = nil, Time = tonumber(args[2])};
-					SaveFile(cfg); 
-					while not IsCellFree() do
-						TriggerClientEvent('chatMessage', args[1], Config.Prefix .. "Waiting on a free cell at jail..."); 
-						Citizen.Wait(10000);
-					end
-					local key = GetFreeCell();
-					local coords = Config.Cells[key];
-					CellTracker[key] = ids.license;
-					local cfg = LoadFile();
-					cfg[ids.license] = {Cell = key, Time = tonumber(args[2])};
-					JailTracker[tonumber(args[1])] = tonumber(args[2]);
-					SaveFile(cfg); 
-					TriggerClientEvent('Badger_Jailing:JailPlayer', tonumber(args[1]), coords, tonumber(args[2]), key);
-				end)
+				if (tonumber(args[2]) <= Config.Max_Jail_Time_Allowed) then 
+					TriggerClientEvent('chatMessage', -1, Config.Prefix .. "Player ^5" .. GetPlayerName(args[1]) .. " ^3has been jailed for ^1" ..
+						args[2] .. " ^3seconds...");
+					Citizen.CreateThread(function()
+						local cfg = LoadFile();
+						local ids = ExtractIdentifiers(args[1]);
+						cfg[ids.license] = {Cell = nil, Time = tonumber(args[2])};
+						SaveFile(cfg); 
+						while not IsCellFree() do
+							TriggerClientEvent('chatMessage', args[1], Config.Prefix .. "Waiting on a free cell at jail..."); 
+							Citizen.Wait(10000);
+						end
+						local key = GetFreeCell();
+						local coords = Config.Cells[key];
+						CellTracker[key] = ids.license;
+						local cfg = LoadFile();
+						cfg[ids.license] = {Cell = key, Time = tonumber(args[2])};
+						JailTracker[tonumber(args[1])] = tonumber(args[2]);
+						SaveFile(cfg); 
+						TriggerClientEvent('Badger_Jailing:JailPlayer', tonumber(args[1]), coords, tonumber(args[2]), key);
+					end)
+				else 
+					-- Too long of a jail time allowed
+					TriggerClientEvent('chatMessage', src, Config.Prefix .. "^1ERROR: You cannot jail for longer than ^3" .. Config.Max_Jail_Time_Allowed .. " ^1seconds...");
+				end
 			else 
 				-- Invalid number supplied 
 				TriggerClientEvent('chatMessage', src, Config.Prefix .. "^1ERROR: The 2nd argument was not a proper number...");

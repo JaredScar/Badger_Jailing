@@ -1,7 +1,8 @@
 Config = {
     Prefix = '^1[^5Badger_Jailing^1] ^3',
     Teleport_Enabled = true, -- Should teleport every X seconds?
-    Teleport_And_Notify_Every = 5, -- Teleport every X seconds 
+    Teleport_And_Notify_Every = 5, -- Teleport every X seconds
+    Max_Jail_Time_Allowed = 600, -- In seconds, what is the max jail time allowed to be entered?
     PrisonExit = { x = 1840.57, y = 2586.37, z = 45.95 },
     Cells = {
         ['Cell 1'] = { x = 1774.48, y = 2568.42, z = 49.55 },
