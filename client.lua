@@ -8,7 +8,6 @@ AddEventHandler('Badger_Jailing:JailPlayer', function(jailCoords, time, cell)
 	jailTime = time;
 	cords = jailCoords;
 	jailCell = cell;
-	print("[DEBUG] Teleporting player to jail coords: " .. jailCoords.x .. ", " .. jailCoords.y .. ", " .. jailCoords.z);
 	SetEntityCoords(ped, jailCoords.x, jailCoords.y, jailCoords.z, 1, 0, 0, 1);
 end)
 
