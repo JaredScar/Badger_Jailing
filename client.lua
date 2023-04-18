@@ -8,6 +8,7 @@ AddEventHandler('Badger_Jailing:JailPlayer', function(jailCoords, time, cell)
 	jailTime = time;
 	cords = jailCoords;
 	jailCell = cell;
+	teleported = false;
 end)
 
 RegisterNetEvent('Badger_Jailing:UnjailPlayer')
